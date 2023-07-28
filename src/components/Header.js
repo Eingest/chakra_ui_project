@@ -64,20 +64,27 @@ const Header = () => {
           alignItems="center"
         >
           <nav>
-            {/* Add social media links based on the `socials` data */}
-            <HStack>
-              <a href={socials[0].url}><FontAwesomeIcon icon={socials[0].icon} size="2x" /></a>
-              <a href={socials[1].url}><FontAwesomeIcon icon={socials[1].icon} size="2x" /></a>
-              <a href={socials[2].url}><FontAwesomeIcon icon={socials[2].icon} size="2x" /></a>
-              <a href={socials[3].url}><FontAwesomeIcon icon={socials[3].icon} size="2x" /></a>
-              <a href={socials[4].url}><FontAwesomeIcon icon={socials[4].icon} size="2x"/></a>
+            <HStack spacing={8}>
+              {socials.map(({ icon, url }) => (
+                <a
+                  key={url}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FontAwesomeIcon icon={icon} size="2x" key={url} />
+                </a>
+              ))}
             </HStack>
           </nav>
           <nav>
             <HStack spacing={8}>
-              {/* Add links to Projects and Contact me section */}
-              <a id="projects-section" href="/#contact-me" onClick={handleClick}>Contact Me</a>
-              <a id="contactme-section" href="/#projects" onClick={handleClick}>Projects</a>
+              <a href="#contactme" onClick={handleClick("contactme")}>
+                Contact Me
+              </a>
+              <a href="#projects" onClick={handleClick("projects")}>
+                Projects
+              </a>
             </HStack>
           </nav>
         </HStack>
